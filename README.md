@@ -1,2 +1,2 @@
 # Capstone-Project
-this is the project for mlops
+This is a sentiment analysis project using the mlops .
