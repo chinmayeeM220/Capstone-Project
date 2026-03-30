@@ -87,3 +87,7 @@ target/
 
 # Mypy cache
 .mypy_cache/
+secrets.txt
+notebooks/
+local_s3/
+data/
