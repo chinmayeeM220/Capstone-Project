@@ -21,6 +21,7 @@ from src.logger import logging
 # setup and breaks artifact uploads, which is why log_model was silently failing.
 # -------------------------------------------------------------------------------------
 dagshub.init(repo_owner='chinmayeeM220', repo_name='Capstone-Project', mlflow=True)
+mlflow.set_tracking_uri("https://dagshub.com/chinmayeeM220/Capstone-Project.mlflow")
 # -------------------------------------------------------------------------------------
 
 
