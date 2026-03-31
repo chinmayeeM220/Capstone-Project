@@ -88,12 +88,11 @@ target/
 # Mypy cache
 .mypy_cache/
 secrets.txt
-notebooks/
 
-model/
-reports/
+
+
+
 data/
 models/
-  data/
-models/
-reports/
+  
+
