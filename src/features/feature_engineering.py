@@ -1,5 +1,4 @@
-# feature engineering
-import numpy as np
+# import numpy as np
 import pandas as pd
 import os
 from sklearn.feature_extraction.text import CountVectorizer
@@ -25,6 +24,7 @@ def load_params(params_path: str) -> dict:
         logging.error('Unexpected error: %s', e)
         raise
 
+
 def load_data(file_path: str) -> pd.DataFrame:
     """Load data from a CSV file."""
     try:
@@ -38,6 +38,7 @@ def load_data(file_path: str) -> pd.DataFrame:
     except Exception as e:
         logging.error('Unexpected error occurred while loading the data: %s', e)
         raise
+
 
 def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: int) -> tuple:
     """Apply Count Vectorizer to the data."""
@@ -59,6 +60,10 @@ def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: i
         test_df = pd.DataFrame(X_test_bow.toarray())
         test_df['label'] = y_test
 
+        # FIX: create models/ directory if it doesn't exist
+        # This was causing [Errno 2] No such file or directory on the CI runner
+        os.makedirs('models', exist_ok=True)
+        os.makedirs("models", exist_ok=True)
         pickle.dump(vectorizer, open('models/vectorizer.pkl', 'wb'))
         logging.info('Bag of Words applied and data transformed')
 
@@ -66,6 +71,7 @@ def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: i
     except Exception as e:
         logging.error('Error during Bag of Words transformation: %s', e)
         raise
+
 
 def save_data(df: pd.DataFrame, file_path: str) -> None:
     """Save the dataframe to a CSV file."""
@@ -77,11 +83,11 @@ def save_data(df: pd.DataFrame, file_path: str) -> None:
         logging.error('Unexpected error occurred while saving the data: %s', e)
         raise
 
+
 def main():
     try:
         params = load_params('params.yaml')
         max_features = params['feature_engineering']['max_features']
-        # max_features = 20
 
         train_data = load_data('./data/interim/train_processed.csv')
         test_data = load_data('./data/interim/test_processed.csv')
@@ -92,7 +98,7 @@ def main():
         save_data(test_df, os.path.join("./data", "processed", "test_bow.csv"))
     except Exception as e:
         logging.error('Failed to complete the feature engineering process: %s', e)
-        print(f"Error: {e}")
+        raise  # re-raise so DVC marks the stage as failed
 
 if __name__ == '__main__':
     main()
