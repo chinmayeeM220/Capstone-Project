@@ -90,6 +90,6 @@ target/
 secrets.txt
 notebooks/
 
-models/
+model/
 reports/
   
