@@ -95,3 +95,6 @@ secrets.txt
 data/
   
 
+__pycache__/
+*.pyc
+*.pyo
