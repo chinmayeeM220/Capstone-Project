@@ -14,14 +14,29 @@ import os
 import dagshub
 from src.logger import logging
 
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "chinmayeeM220"
+repo_name = "Capstone-Project"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+
 
 # FIX: Only call dagshub.init() — do NOT call mlflow.set_tracking_uri() separately.
 # dagshub.init() sets the tracking URI AND configures the artifact store correctly.
 # Calling set_tracking_uri() before or after dagshub.init() overrides its internal
 # setup and breaks artifact uploads, which is why log_model was silently failing.
 # -------------------------------------------------------------------------------------
-dagshub.init(repo_owner='chinmayeeM220', repo_name='Capstone-Project', mlflow=True)
-mlflow.set_tracking_uri("https://dagshub.com/chinmayeeM220/Capstone-Project.mlflow")
+# dagshub.init(repo_owner='chinmayeeM220', repo_name='Capstone-Project', mlflow=True)
+# mlflow.set_tracking_uri("https://dagshub.com/chinmayeeM220/Capstone-Project.mlflow")
 # -------------------------------------------------------------------------------------
 
 
