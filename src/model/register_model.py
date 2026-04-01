@@ -31,7 +31,8 @@ mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # FIX: Only call dagshub.init() — do NOT call mlflow.set_tracking_uri() separately.
 # dagshub.init() sets the tracking URI AND configures the artifact store correctly.
 # -------------------------------------------------------------------------------------
-
+# dagshub.init(repo_owner='chinmayeeM220', repo_name='Capstone-Project', mlflow=True)
+# mlflow.set_tracking_uri("https://dagshub.com/chinmayeeM220/Capstone-Project.mlflow")
 # -------------------------------------------------------------------------------------
 
 

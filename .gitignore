@@ -98,3 +98,5 @@ data/
 __pycache__/
 *.pyc
 *.pyo
+eksctl/
+eksctl_Windows_amd64.zip
