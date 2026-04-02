@@ -44,8 +44,8 @@ stages:
       nfiles: 2
     - path: src/features/feature_engineering.py
       hash: md5
-      md5: c1e9ac62f2a96b3be93c1afc49eaf5ee
-      size: 3350
+      md5: 355d1d2e7cc8239416f35c65a592311a
+      size: 3566
     params:
       params.yaml:
         feature_engineering.max_features: 50
@@ -57,7 +57,7 @@ stages:
       nfiles: 2
     - path: models/vectorizer.pkl
       hash: md5
-      md5: 40d079d7a4d1ba3dbc2a5f89ed14c5b5
+      md5: a0702ea371e7e8d5f9cf722ad16c806e
       size: 1866
   model_building:
     cmd: set PYTHONPATH=. && python src/model/model_building.py
@@ -69,28 +69,28 @@ stages:
       nfiles: 2
     - path: src/model/model_building.py
       hash: md5
-      md5: a41d470ad5e2503dd6b59f056f78b533
-      size: 1802
+      md5: 09318891fd3620f49d7bc9012e004492
+      size: 1875
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 56f3b1ddf3f64c107f6fef13b89fd852
+      md5: a2d3bd787ee0a1b0acaa301d3f90dc71
       size: 1096
   model_evaluation:
     cmd: set PYTHONPATH=. && python src/model/model_evaluation.py
     deps:
     - path: models/model.pkl
       hash: md5
-      md5: 56f3b1ddf3f64c107f6fef13b89fd852
+      md5: a2d3bd787ee0a1b0acaa301d3f90dc71
       size: 1096
     - path: src/model/model_evaluation.py
       hash: md5
-      md5: 9bcdf32ce915ee01efcbc45992e2c162
-      size: 5698
+      md5: f579098c12f6f49c42c741383c122e35
+      size: 6331
     outs:
     - path: reports/experiment_info.json
       hash: md5
-      md5: f2362811d283861251f7e054880f6cfd
+      md5: d46e007a136a54a63a753eca6dc89ced
       size: 82
     - path: reports/metrics.json
       hash: md5
@@ -101,9 +101,9 @@ stages:
     deps:
     - path: reports/experiment_info.json
       hash: md5
-      md5: f2362811d283861251f7e054880f6cfd
+      md5: d46e007a136a54a63a753eca6dc89ced
       size: 82
     - path: src/model/register_model.py
       hash: md5
-      md5: 4746b612c87fed9c83ec276571b36c53
-      size: 4369
+      md5: ec8e9b0cd83ff533dc89ac20d130affa
+      size: 4960
