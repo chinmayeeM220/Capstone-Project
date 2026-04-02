@@ -1,22 +1,22 @@
-apiVersion: apps/v1
+aapiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app
+  name: sentiment_analysis
   labels:
-    app: flask-app
+    app: sentiment_analysis
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask-app
+      app: sentiment_analysis
   template:
     metadata:
       labels:
-        app: flask-app
+        app: sentiment_analysis
     spec:
       containers:
-      - name: flask-app
-        image: 020866158197.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest
+      - name: sentiment_analysis
+        image: 605893374911.dkr.ecr.us-east-1.amazonaws.com/sentiment_analysis:latest
         ports:
         - containerPort: 5000
         resources:
@@ -37,11 +37,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-app-service
+  name: sentiment_analysis-service
 spec:
   type: LoadBalancer
   selector:
-    app: flask-app
+    app: sentiment_analysis
   ports:
     - name: http
       protocol: TCP
