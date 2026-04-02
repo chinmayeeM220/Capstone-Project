@@ -100,3 +100,4 @@ __pycache__/
 *.pyo
 eksctl/
 eksctl_Windows_amd64.zip
+models/
